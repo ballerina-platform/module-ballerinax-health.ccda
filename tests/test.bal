@@ -1,3 +1,18 @@
+// Copyright (c) 2023, WSO2 LLC. (http://www.wso2.com).
+
+// WSO2 LLC. licenses this file to you under the Apache License,
+// Version 2.0 (the "License"); you may not use this file except
+// in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing,
+// software distributed under the License is distributed on an
+// "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+// KIND, either express or implied.  See the License for the
+// specific language governing permissions and limitations
+// under the License.
 import ballerina/data.xmldata;
 import ballerina/test;
 import ballerina/log;
@@ -125,7 +140,7 @@ function testPatientXmlParsing() returns error? {
 
 @test:Config {}
 function testCCDDocumentXmlParsing() returns error? {
-    string xmlStr = string `<ContinuityofCareDocumentCCD xmlns="urn:hl7-org:v3">
+    string xmlStr = string `<ClinicalDocument xmlns="urn:hl7-org:v3">
     <realmCode code="US" />
     <typeId extension="POCD_HD000040" root="2.16.840.1.113883.1.3" />
     <templateId root="1.2.840.114350.1.72.1.51693" />
@@ -2036,7 +2051,7 @@ function testCCDDocumentXmlParsing() returns error? {
                                 <originalText>Oral</originalText>
                             </routeCode>
                             <doseQuantity unit="mg" value="100" />
-                            <consumable>
+                            <consumable nullFlavor="true" typeCod="CSM">
                                 <manufacturedProduct classCode="MANU">
                                     <templateId root="2.16.840.1.113883.10.20.22.4.23" />
                                     <templateId root="2.16.840.1.113883.10.20.22.4.23"
@@ -2188,12 +2203,12 @@ function testCCDDocumentXmlParsing() returns error? {
             </component>
         </structuredBody>
     </component>
-</ContinuityofCareDocumentCCD>`;
+</ClinicalDocument>`;
     xml ccdXml = check xml:fromString(xmlStr);
-    ContinuityofCareDocumentCCD|error ccdDoc =  xmldata:parseAsType(ccdXml, {textFieldName: "xmlText"});
+    ProgressNote|error ccdDoc =  xmldata:parseAsType(ccdXml, {textFieldName: "xmlText"});
     if (ccdDoc is error) {
         log:printError("Error parsing CCD Document: " + ccdDoc.message());
         return;
     }
-    log:printInfo("Parsed CCD Document: " + ccdDoc.toString());
+    log:printInfo("Parsed CCD Document: ", ccdaDoc = ccdDoc);
 }

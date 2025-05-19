@@ -1,3 +1,18 @@
+// Copyright (c) 2023, WSO2 LLC. (http://www.wso2.com).
+
+// WSO2 LLC. licenses this file to you under the Apache License,
+// Version 2.0 (the "License"); you may not use this file except
+// in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing,
+// software distributed under the License is distributed on an
+// "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+// KIND, either express or implied.  See the License for the
+// specific language governing permissions and limitations
+// under the License.
 import ballerina/data.xmldata;
 
 public type OrganizerComponent record {|
@@ -88,7 +103,15 @@ public type PQ record {|
     string unit?;
     @xmldata:Attribute
     decimal value?;
+    @xmldata:Attribute
+    string displayName?;
+    @xmldata:Attribute
+    string code?;
+    @xmldata:Attribute
+    string codeSystem?;
     PQR[] translation?;
+    ED originalText?;
+    string xmlText?;
 |};
 
 public type PreconditionBase record {|
@@ -395,7 +418,7 @@ public type Section record {|
     II id?;
     CE code?;
     ST title?;
-    string text?;
+    record {} text?;
     CE confidentialityCode?;
     CS languageCode?;
     Subject subject?;
@@ -1011,6 +1034,8 @@ public type SXCM_TS record {|
     string value?;
     @xmldata:Attribute
     string operator?;
+    IVXB_TS low?;
+    IVXB_TS high?;
 |};
 
 public type Entry record {|
@@ -1087,15 +1112,17 @@ public type SubstanceAdministration record {|
 public type InfrastructureRoot record {|
     @xmldata:Attribute
     string nullFlavor?;
+    @xmldata:Attribute
+    string typeCode?;
+    @xmldata:Attribute
+    BL contextConductionInd?;
     CS[] realmCode?;
     II typeId?;
     II[] templateId?;
-    @xmldata:Attribute
-    CS typeCode?;
-    @xmldata:Attribute
-    BL contextConductionInd?;
     ManufacturedProduct manufacturedProduct?;
     Section section?;
+    HealthCareFacility healthCareFacility?;
+    AssignedEntity assignedEntity?;
 |};
 
 public type SXPR_TS record {|
@@ -1528,6 +1555,7 @@ public type Component record {|
     boolean contextConductionInd?;
     NonXMLBody nonXMLBody?;
     StructuredBody structuredBody?;
+    Act act?;
 |};
 
 public type IdentifiedBy record {|
@@ -1636,7 +1664,8 @@ public type AD record {|
     ADXP county?;
     ADXP city?;
     ADXP postalCode?;
-    ADXP streetAddressLine?;
+    //TODO: need to cross check with the schema
+    ADXP[] streetAddressLine?;
     ADXP houseNumber?;
     ADXP houseNumberNumeric?;
     ADXP direction?;
@@ -1932,7 +1961,7 @@ public type Observation record {|
     CE priorityCode?;
     IVL_INT repeatNumber?;
     CS languageCode?;
-    ANY[] value?;
+    PQ[] value?;
     CE[] interpretationCode?;
     CE[] methodCode?;
     CD[] targetSiteCode?;

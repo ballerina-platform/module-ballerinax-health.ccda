@@ -1,4 +1,23 @@
+// Copyright (c) 2023, WSO2 LLC. (http://www.wso2.com).
+
+// WSO2 LLC. licenses this file to you under the Apache License,
+// Version 2.0 (the "License"); you may not use this file except
+// in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing,
+// software distributed under the License is distributed on an
+// "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+// KIND, either express or implied.  See the License for the
+// specific language governing permissions and limitations
+// under the License.
 import ballerina/data.xmldata;
+
+public type ClincialDocument record {
+    string clinicalDocType?;
+};
 
 @xmldata:Namespace {uri: "urn:hl7-org:v3"}
 public type NoteActivity record {|
@@ -1268,6 +1287,8 @@ public type ProceduresSection record {|
 
 @xmldata:Namespace {uri: "urn:hl7-org:v3"}
 public type CarePlan record {|
+    *ClincialDocument;
+    string clinicalDocType = "CarePlan";
     @xmldata:Attribute
     string nullFlavor?;
     @xmldata:Attribute
@@ -2093,6 +2114,8 @@ public type MedicationsSection record {|
 
 @xmldata:Namespace {uri: "urn:hl7-org:v3"}
 public type UnstructuredDocument record {|
+    *ClincialDocument;
+    string clinicalDocType = "UnstructuredDocument";
     @xmldata:Attribute
     string nullFlavor?;
     @xmldata:Attribute
@@ -2818,7 +2841,7 @@ public type AllergiesAndIntolerancesSection record {|
     II id?;
     CE code;
     ST title;
-    string text;
+    record {} text;
     CE confidentialityCode?;
     CS languageCode?;
     Subject subject?;
@@ -3050,6 +3073,8 @@ public type PostoperativeDiagnosisSection record {|
 
 @xmldata:Namespace {uri: "urn:hl7-org:v3"}
 public type ContinuityofCareDocumentCCD record {|
+    *ClincialDocument;
+    string clinicalDocType = "ContinuityofCareDocumentCCD";
     @xmldata:Attribute
     string nullFlavor?;
     @xmldata:Attribute
@@ -3131,6 +3156,8 @@ public type MRISafetyObservation record {|
 
 @xmldata:Namespace {uri: "urn:hl7-org:v3"}
 public type ProcedureNote record {|
+    *ClincialDocument;
+    string clinicalDocType = "ProcedureNote";
     @xmldata:Attribute
     string nullFlavor?;
     @xmldata:Attribute
@@ -3709,6 +3736,8 @@ public type HealthStatusEvaluationsandOutcomesSection record {|
 
 @xmldata:Namespace {uri: "urn:hl7-org:v3"}
 public type ProgressNote record {|
+    *ClincialDocument;
+    string clinicalDocType = "ProgressNote";
     @xmldata:Attribute
     string nullFlavor?;
     @xmldata:Attribute
@@ -4295,6 +4324,8 @@ public type EncountersSection record {|
 
 @xmldata:Namespace {uri: "urn:hl7-org:v3"}
 public type ReferralNote record {|
+    *ClincialDocument;
+    string clinicalDocType = "ReferralNote";
     @xmldata:Attribute
     string nullFlavor?;
     @xmldata:Attribute
@@ -4755,6 +4786,8 @@ public type ImmunizationsSection record {|
 
 @xmldata:Namespace {uri: "urn:hl7-org:v3"}
 public type OperativeNote record {|
+    *ClincialDocument;
+    string clinicalDocType = "OperativeNote";
     @xmldata:Attribute
     string nullFlavor?;
     @xmldata:Attribute
@@ -5077,6 +5110,8 @@ public type MentalStatusOrganizer record {|
 
 @xmldata:Namespace {uri: "urn:hl7-org:v3"}
 public type DischargeSummary record {|
+    *ClincialDocument;
+    string clinicalDocType = "DischargeSummary";
     @xmldata:Attribute
     string nullFlavor?;
     @xmldata:Attribute
@@ -5583,6 +5618,8 @@ public type PostprocedureDiagnosis record {|
 
 @xmldata:Namespace {uri: "urn:hl7-org:v3"}
 public type TransferSummary record {|
+    *ClincialDocument;
+    string clinicalDocType = "TransferSummary";
     @xmldata:Attribute
     string nullFlavor?;
     @xmldata:Attribute
@@ -6450,6 +6487,8 @@ public type HospitalDischargeStudiesSummarySection record {|
 
 @xmldata:Namespace {uri: "urn:hl7-org:v3"}
 public type HistoryandPhysical record {|
+    *ClincialDocument;
+    string clinicalDocType = "HistoryandPhysical";
     @xmldata:Attribute
     string nullFlavor?;
     @xmldata:Attribute
