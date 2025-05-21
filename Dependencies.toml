@@ -118,7 +118,7 @@ modules = [
 [[package]]
 org = "ballerinax"
 name = "health.ccda.r3"
-version = "0.1.0"
+version = "0.9.1"
 dependencies = [
 	{org = "ballerina", name = "data.xmldata"},
 	{org = "ballerina", name = "log"},
