@@ -20,8 +20,8 @@ To build the package, you need to have Ballerina installed on your system. Follo
 Clone the repository and build the package using the following commands:
 
 ```bash
-git clone https://github.com/your-repo/gen-ccda-package.git
-cd gen-ccda-package
+git clone https://github.com/ballerina-platform/module-ballerinax-health.ccda.git
+cd module-ballerinax-health.ccda
 bal build
 ```
 ## Usage
